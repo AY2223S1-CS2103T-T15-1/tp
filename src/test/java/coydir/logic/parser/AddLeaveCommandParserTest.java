@@ -29,6 +29,9 @@ public class AddLeaveCommandParserTest {
 
         // missing employee id
         assertParseFailure(parser, "01-01-2022" + "01-01-2022", invalidFormat);
+
+        //missing all
+        assertParseFailure(parser, " ", invalidFormat);
     }
 
     @Test

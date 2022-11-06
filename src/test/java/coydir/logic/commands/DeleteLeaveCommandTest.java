@@ -59,6 +59,7 @@ public class DeleteLeaveCommandTest {
     @Test
     public void execute_invalidIndex_throwsCommandException() {
         DeleteLeaveCommand deleteLeaveCommand = new DeleteLeaveCommand(ID_FIRST_EMPLOYEE, 100);
+        DeleteLeaveCommand deleteLeaveCommand2 = new DeleteLeaveCommand(ID_FIRST_EMPLOYEE, -1);
         Model model = new ModelManager(new Database(), new UserPrefs());
         Person person = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
@@ -67,6 +68,7 @@ public class DeleteLeaveCommandTest {
             .withLeavePeriod(new Leave("01-01-2022", "01-01-2022")).withEmployeeId("1").build();
         model.addPerson(person);
         assertCommandFailure(deleteLeaveCommand, model, DeleteLeaveCommand.MESSAGE_INVALID_INDEX);
+        assertCommandFailure(deleteLeaveCommand2, model, DeleteLeaveCommand.MESSAGE_INVALID_INDEX);
     }
 
 
